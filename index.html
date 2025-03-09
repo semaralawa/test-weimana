@@ -16,22 +16,28 @@
         <div class="p-3 border border-1 mb-5 sticky-top bg-white">
             <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="config-tab" data-bs-toggle="tab"
-                        data-bs-target="#config-tab-pane" type="button" role="tab" aria-controls="config-tab-pane"
-                        aria-selected="true">Config</button>
+                    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1-tab-pane"
+                        type="button" role="tab" aria-controls="tab1-tab-pane"
+                        aria-selected="true">CONFIGURATION</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="status-tab" data-bs-toggle="tab" data-bs-target="#status-tab-pane"
-                        type="button" role="tab" aria-controls="status-tab-pane" aria-selected="true">Status</button>
+                    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2-tab-pane"
+                        type="button" role="tab" aria-controls="tab2-tab-pane" aria-selected="true">STATUS</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3-tab-pane"
+                        type="button" role="tab" aria-controls="tab3-tab-pane" aria-selected="true">WEBSERVER</button>
                 </li>
             </ul>
         </div>
         <form action="" method="post">
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="config-tab-pane" role="tabpanel" aria-labelledby="config-tab"
+                <!-- tab1 -->
+                <div class="tab-pane fade show active" id="tab1-tab-pane" role="tabpanel" aria-labelledby="tab1-tab"
                     tabindex="0">
                     <div class="container">
                         <div class="row">
+                            <!-- parameter -->
                             <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
                                 <label for="" class="col-md-3 col-form-label">
                                     Controller Type
@@ -41,8 +47,22 @@
                                     </a>
                                 </label>
                                 <div class="col-md-9 fv-row my-auto">
-                                    <input name="controller_type" placeholder="Controller Type" type="text"
-                                        class="form-control" value="">
+                                    <input name="p1" placeholder="Controller Type" type="text" class="form-control"
+                                        value="">
+                                </div>
+                            </div>
+                            <!-- parameter -->
+                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
+                                <label for="" class="col-md-3 col-form-label">
+                                    Controller Type
+                                    <a href="#" class="d-inline-block" data-bs-toggle="tooltip" data-bs-title="Ini Tips"
+                                        data-bs-placement="right">
+                                        <i class="bi bi-question-circle-fill"></i>
+                                    </a>
+                                </label>
+                                <div class="col-md-9 fv-row my-auto">
+                                    <input name="p2" placeholder="Controller Type" type="text" class="form-control"
+                                        value="">
                                 </div>
                             </div>
                             <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
@@ -54,8 +74,8 @@
                                     </a>
                                 </label>
                                 <div class="col-md-9 fv-row my-auto">
-                                    <input name="controller_type" placeholder="Controller Type" type="text"
-                                        class="form-control" value="">
+                                    <input name="p3" placeholder="Controller Type" type="text" class="form-control"
+                                        value="">
                                 </div>
                             </div>
                             <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
@@ -67,34 +87,21 @@
                                     </a>
                                 </label>
                                 <div class="col-md-9 fv-row my-auto">
-                                    <input name="controller_type" placeholder="Controller Type" type="text"
-                                        class="form-control" value="">
+                                    <input name="p4" placeholder="Controller Type" type="text" class="form-control"
+                                        value="">
                                 </div>
                             </div>
-                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
-                                <label for="" class="col-md-3 col-form-label">
-                                    Controller Type
-                                    <a href="#" class="d-inline-block" data-bs-toggle="tooltip" data-bs-title="Ini Tips"
-                                        data-bs-placement="right">
-                                        <i class="bi bi-question-circle-fill"></i>
-                                    </a>
-                                </label>
-                                <div class="col-md-9 fv-row my-auto">
-                                    <input name="controller_type" placeholder="Controller Type" type="text"
-                                        class="form-control" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- button -->
-                        <div class="sticky-bottom p-2 d-flex justify-content-center bg-white">
-                            <button type="button" id="btn_read" class="btn btn-primary mx-2">Read</button>
-                            <button type="button" id="btn_write" class="btn btn-success mx-2">Write</button>
-                            <button type="button" id="btn_default" class="btn btn-secondary mx-2">default</button>
                         </div>
                     </div>
+                    <!-- button -->
+                    <div class="sticky-bottom p-2 d-flex justify-content-center bg-white">
+                        <button type="button" id="btn_read" class="btn btn-primary mx-2">Read</button>
+                        <button type="button" id="btn_write" class="btn btn-success mx-2">Write</button>
+                        <button type="button" id="btn_default" class="btn btn-secondary mx-2">default</button>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="status-tab-pane" role="tabpanel" aria-labelledby="status-tab"
-                    tabindex="0">
+                <!-- tab2 -->
+                <div class="tab-pane fade" id="tab2-tab-pane" role="tabpanel" aria-labelledby="tab2-tab" tabindex="0">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
@@ -129,8 +136,49 @@
                     </div>
                     <!-- chart -->
                     <div class="pt-5">
-                        <div class="border-bottom border-1 p-2 mb-3">Contoh Chart</div>
+                        <div class="border-bottom border-1 p-2 mb-3">FOC</div>
                         <div id="chart" style="height: 350px;"></div>
+                    </div>
+                    <!-- button -->
+                    <div class="sticky-bottom p-2 d-flex justify-content-center bg-white">
+                        <button type="button" id="btn_status" class="btn btn-primary mx-2">STREAM</button>
+                    </div>
+                </div>
+                <!-- tab3 -->
+                <div class="tab-pane fade" id="tab3-tab-pane" role="tabpanel" aria-labelledby="tab3-tab" tabindex="0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
+                                <label for="" class="col-md-3 col-form-label">SSID</label>
+                                <div class="col-md-9 fv-row my-auto">
+                                    <input name="ssid" placeholder="mywifi" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
+                                <label for="" class="col-md-3 col-form-label">Password</label>
+                                <div class="col-md-9 fv-row my-auto">
+                                    <input name="motor" placeholder="mypassword" type="text" class="form-control"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
+                                <label for="" class="col-md-3 col-form-label">mDNS</label>
+                                <div class="col-md-9 fv-row my-auto">
+                                    <input name="motor" placeholder="mydomain.local" type="text" class="form-control"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 row mb-lg-3 mb-2 pe-0">
+                                <label for="" class="col-md-3 col-form-label">Baudrate</label>
+                                <div class="col-md-9 fv-row my-auto">
+                                    <input name="motor" placeholder="115200" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- button -->
+                    <div class="sticky-bottom p-2 d-flex justify-content-center bg-white">
+                        <button type="button" id="btn_apply" class="btn btn-primary mx-2">APPLY</button>
                     </div>
                 </div>
             </div>
@@ -149,13 +197,14 @@
 
         // --- button
         $("#btn_read").click(function () {
-            alert("tombol read")
+            alert("Reading Configuration")
         })
         $("#btn_write").click(function () {
-            alert("tombol write")
+            alert("Configuration Has Been Stored To The Controller")
         })
         $("#btn_default").click(function () {
-            alert("tombol default")
+
+            alert("Configuration Has Been Set To Default")
         })
 
         // --- chart
