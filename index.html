@@ -622,18 +622,19 @@
                         </div>
                     </div>
                     <!-- button -->
-                    <div class="sticky-bottom p-2 d-flex justify-content-center bg-white">
-                        <button type="button" id="btn_read" class="btn btn-primary mx-2">Read</button>
-                        <button type="button" id="btn_write" class="btn btn-success mx-2">Write</button>
-                        <button type="button" id="btn_default" class="btn btn-secondary mx-2">Default</button>
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button"
-                                id="inputGroupFileAddon04">Apply</button>
+                    <div class="sticky-bottom p-2 pt-3 bg-white text-center">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" id="btn_read" class="btn btn-primary mx-2">Read</button>
+                            <button type="button" id="btn_write" class="btn btn-success mx-2">Write</button>
+                            <button type="button" id="btn_default" class="btn btn-secondary mx-2">Default</button>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="inputGroupFile04"
+                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    id="inputGroupFileAddon04">Apply</button>
+                            </div>
                         </div>
-                        <button type="button" id="btn_backup" class="btn btn-secondary mx-2">Backup Config</button>
-
+                        <button type="button" id="btn_backup" class="btn btn-secondary mt-3">Backup Config</button>
                     </div>
                 </div>
         </form>
@@ -645,8 +646,8 @@
                         <div class="row mb-lg-1 pb-3 pe-0">
                             <label for="" class="col-md-2 col-form-label">Error Status</label>
                             <div class="col-md-10 pe-0">
-                                <input name="s1" placeholder="No Error" type="text"
-                                    class="form-control bg-white border-0" value="" disabled readonly>
+                                <input name="s1" placeholder="No Error" type="text" class="form-control bg-white"
+                                    value="" disabled readonly>
                             </div>
                         </div>
                         <div class="row justify-content-between">
@@ -917,41 +918,100 @@
         })
 
         // --- chart
-        var options = {
+        var is_reset = false;
+
+        const chartData = {
+            lastDate: new Date().getTime(),
             series: [{
-                name: "Data",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: 'Data',
+                data: []
             }],
+            currentZoom: null
+        };
+
+        // Chart configuration
+        const options = {
             chart: {
-                height: 350,
                 type: 'line',
+                height: 350,
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                },
+                zoom: {
+                    enabled: true,
+                    type: 'x',
+                    autoScaleYaxis: false
+                },
+                toolbar: {
+                    autoSelected: 'zoom'
+                },
+                events: {
+                    zoomed: function (chartContext, { xaxis, yaxis }) {
+                        chartData.currentZoom = { xaxis, yaxis };
+                        if (is_reset) {
+                            chartData.currentZoom = null;
+                            is_reset = false;
+                        }
+                    },
+                    beforeResetZoom: function (chartContext) {
+                        is_reset = true;
+                    }
+                }
             },
+            series: chartData.series,
             dataLabels: {
                 enabled: false
             },
             stroke: {
-                curve: 'straight'
+                curve: 'smooth'
             },
-            grid: {
-                row: {
-                    colors: ['#f3f3f3', 'transparent'],
-                    opacity: 0.5
+            markers: {
+                size: 0
+            },
+            xaxis: {
+                type: 'datetime',
+                title: {
+                    text: 'Time'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Value'
                 },
             },
-            // xaxis: {
-            //     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-            // }
+            legend: {
+                show: false
+            }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        const chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
 
+        // test tambah data
         $("#test_add_data").click(function () {
-            const num = Math.floor(Math.random() * 100);
+            chartData.lastDate = new Date().getTime();
+
+            const newDataPoint = {
+                x: chartData.lastDate,
+                y: Math.floor(Math.random() * 80) + 10
+            };
+
             chart.appendData([{
-                data: [num]
-            }])
-        })
+                data: [newDataPoint],
+                seriesName: 'Data'
+            }], true);
+
+            if (chartData.currentZoom) {
+                const range = chartData.currentZoom.xaxis.max - chartData.currentZoom.xaxis.min;
+                const newMax = newDataPoint.x;
+                const newMin = newMax - range;
+
+                setTimeout(() => {
+                    chart.zoomX(newMin, newMax);
+                }, 100);
+            }
+        });
     </script>
 </body>
 
