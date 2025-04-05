@@ -1,0 +1,14 @@
+{
+    "MACAddress": "XX:XX:XX:XX:XX:XX",
+    "LocalIP": "192.168.1.1",
+    "HostName": "EasyDongle",
+    "SSID": "@wifi",
+    "Password": "12341234",
+    "SSID2": "@wifi",
+    "Password2": "12341234",
+    "myMDNS": "easydongle",
+    "Baudrate": 115200,
+    "Data_Bits": 8,
+    "Parity": 0,
+    "Stop_Bits": 1
+}
